@@ -1,0 +1,9 @@
+**/node_modules/**
+**/reports/**
+**/cypress/**
+**/setupProxy.js
+**/setupTests.ts
+**/reportWebVitals.ts
+**/jest.config.js
+**/__snapshots__/**
+**/Lui/**
