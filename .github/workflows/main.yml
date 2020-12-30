@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
+      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
 
     steps:
       - name: Begin CI...
@@ -39,8 +39,8 @@ jobs:
       # Setup gcloud CLI
       - uses: google-github-actions/setup-gcloud@master
         with:
-          project_id: ${{ secrets.GCLOUD_PROJECT_ID }}
-          service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
 
       # Configure Docker to use the gcloud command-line tool as a credential
       # helper for authentication
