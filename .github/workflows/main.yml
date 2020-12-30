@@ -28,30 +28,37 @@ jobs:
         run: npm run build
         working-directory: .
 
-      - name: Push to Docker Hub
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: caodam2504/sandbox-app
-          tag_with_ref: true
+#      - name: Push to Docker Hub
+#        uses: docker/build-push-action@v1
+#        with:
+#          username: ${{ secrets.DOCKER_USERNAME }}
+#          password: ${{ secrets.DOCKER_PASSWORD }}
+#          repository: caodam2504/sandbox-app
+#          tag_with_ref: true
 
-      - name: Setup gcloud CLI
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      # Setup gcloud CLI
+      - uses: google-github-actions/setup-gcloud@master
         with:
-          service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
-          project_id: ${{ secrets.GCLOUD_PROJECT_ID }}
-          export_default_credentials: true
-
+          version: '290.0.1'
+          service_account_key: ${{ secrets.GKE_SA_KEY }}
+          project_id: ${{ secrets.GKE_PROJECT }}
+      # Configure Docker to use the gcloud command-line tool as a credential
+          # helper for authentication
+      - run: |-
+          gcloud --quiet auth configure-docker
+      # Get the GKE credentials so we can deploy to the cluster
+      - run: |-
+          gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
+      # Build the Docker image
       - name: Build Docker Image
         run: |-
-          docker build --build-arg -t gcr.io/$PROJECT_ID
-
-      - name: Configure Docker to use gcloud cli as a credential helper
-        run: |
-          gcloud auth configure-docker -q
-
-      - name: Push to GCR
+          docker build \
+            --tag "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
+            --build-arg GITHUB_SHA="$GITHUB_SHA" \
+            --build-arg GITHUB_REF="$GITHUB_REF" \
+            .
+      # Push the Docker image to Google Container Registry
+      - name: Push image to GCR
         run: |-
-          docker push gcr.io/$PROJECT_ID
+          docker push "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
 
