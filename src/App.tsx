@@ -9,7 +9,7 @@ const App: React.FC = () => {
       <header className="App-header">
         <div className="lui-text-content-area">
           <LuiFormikForm initialValues={{ username: "" }} onSubmit={() => {}}>
-            <LuiTextInput name={"username"} label="Username" />
+            <LuiTextInput name={"username"} label="Username or Email" />
             <LuiTextInput name={"password"} label="Password" />
             <LuiButton level="secondary">Sign up</LuiButton>
             <LuiButton level="primary">Login</LuiButton>
