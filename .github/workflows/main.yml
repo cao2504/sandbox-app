@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
 
     steps:
       - name: Begin CI...
@@ -40,15 +40,18 @@ jobs:
       - uses: google-github-actions/setup-gcloud@master
         with:
           version: '290.0.1'
-          service_account_key: ${{ secrets.GKE_SA_KEY }}
-          project_id: ${{ secrets.GKE_PROJECT }}
+          service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
+          project_id: ${{ secrets.GCLOUD_PROJECT_ID }}
+
       # Configure Docker to use the gcloud command-line tool as a credential
-          # helper for authentication
+      # helper for authentication
       - run: |-
           gcloud --quiet auth configure-docker
+
       # Get the GKE credentials so we can deploy to the cluster
 #      - run: |-
 #          gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
+      -
       # Build the Docker image
       - name: Build Docker Image
         run: |-
