@@ -4,6 +4,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+
     steps:
       - name: Begin CI...
         uses: actions/checkout@v2
@@ -32,3 +35,23 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: caodam2504/sandbox-app
           tag_with_ref: true
+
+      - name: Setup gcloud CLI
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
+          project_id: ${{ secrets.GCLOUD_PROJECT_ID }}
+          export_default_credentials: true
+
+      - name: Build Docker Image
+        run: |-
+          docker build --build-arg -t gcr.io/$PROJECT_ID
+
+      - name: Configure Docker to use gcloud cli as a credential helper
+        run: |
+          gcloud auth configure-docker -q
+
+      - name: Push to GCR
+        run: |-
+          docker push gcr.io/$PROJECT_ID
+
