@@ -7,6 +7,9 @@ jobs:
     env:
       PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
       IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
+      GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
+      GKE_ZONE: ${{ secrets.GKE_ZONE }}
+      DEPLOYMENT_NAME: Development
 
     steps:
       - name: Begin CI...
