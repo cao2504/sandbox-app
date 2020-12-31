@@ -16,6 +16,6 @@ spec:
         app: nginx-1
     spec:
       containers:
-        - name: sandbox_app
+        - name: nginx-1
           image: gcr.io/PROJECT_ID/IMAGE:TAG
 
