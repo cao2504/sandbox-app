@@ -10,6 +10,7 @@ jobs:
       GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
       GKE_ZONE: ${{ secrets.GKE_ZONE }}
       DEPLOYMENT_NAME: Development
+      GIT_COMMIT_HASH: $(git rev-parse --short "$GITHUB_SHA")
 
     steps:
       - name: Begin CI...
@@ -59,14 +60,12 @@ jobs:
       - name: Build Image
         run: |-
           docker build \
-            --tag "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
-            --build-arg GITHUB_SHA="$GITHUB_SHA" \
-            --build-arg GITHUB_REF="$GITHUB_REF" \
+            --tag "gcr.io/$PROJECT_ID/$IMAGE:$GIT_COMMIT_HASH" \
             .
       # Push the Docker image to Google Container Registry
       - name: Push image to GCR
         run: |-
-          docker push "gcr.io/$PROJECT_ID/$IMAGE_NAME:$GITHUB_SHA"
+          docker push "gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_COMMIT_HASH"
 
       # Set up kustomize
       - name: Set up Kustomize
