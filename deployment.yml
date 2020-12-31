@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: nginx-1
+  namespace: default
+  labels:
+    app: nginx-1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-1
+  template:
+    metadata:
+      labels:
+        app: nginx-1
+    spec:
+      containers:
+        - name: sandbox_app
+          image: gcr.io/PROJECT_ID/IMAGE:TAG
+

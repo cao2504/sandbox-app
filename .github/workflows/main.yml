@@ -15,7 +15,7 @@ jobs:
       - name: Begin CI...
         uses: actions/checkout@v2
 
-      - name: Declare some variables
+      - name: Get git hash value
         id: vars
         shell: bash
         run: |
