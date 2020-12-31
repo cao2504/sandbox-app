@@ -54,12 +54,12 @@ jobs:
 
       # Build the Docker image
       - name: Build Image
-          run: |-
-            docker build \
-              --tag "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
-              --build-arg GITHUB_SHA="$GITHUB_SHA" \
-              --build-arg GITHUB_REF="$GITHUB_REF" \
-              .
+        run: |-
+          docker build \
+            --tag "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
+            --build-arg GITHUB_SHA="$GITHUB_SHA" \
+            --build-arg GITHUB_REF="$GITHUB_REF" \
+            .
       # Push the Docker image to Google Container Registry
       - name: Push image to GCR
         run: |-
@@ -71,6 +71,7 @@ jobs:
           curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
           chmod u+x ./kustomize
       # Deploy the Docker image to the GKE cluster
+
       - name: Deploy Docker image to cluster
         run: |-
           ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
