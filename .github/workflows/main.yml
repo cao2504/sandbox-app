@@ -65,11 +65,9 @@ jobs:
       # Build the Docker image
       - name: Build Image
         run: |-
-          docker build 
-
-      - name: Tag image
-        run: |-
-          docker tag "gcr.io/$PROJECT_ID/$IMAGE_NAME:${{ steps.vars.outputs.sha_short }}"
+          docker build \
+            --tag "gcr.io/$PROJECT_ID/$IMAGE" \
+            .
       # Push the Docker image to Google Container Registry
       - name: Push image to GCR
         run: |-
