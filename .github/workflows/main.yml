@@ -9,7 +9,7 @@ jobs:
       IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
       GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
       GKE_ZONE: ${{ secrets.GKE_ZONE }}
-      DEPLOYMENT_NAME: Development
+      DEPLOYMENT_NAME: nginx-1
 
     steps:
       - name: Begin CI...
