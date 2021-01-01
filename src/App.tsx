@@ -11,7 +11,7 @@ const App: React.FC = () => {
           <LuiFormikForm initialValues={{ username: "" }} onSubmit={() => {}}>
             <LuiTextInput name={"username"} label="Username" />
             <LuiTextInput name={"password"} label="Password" />
-            <LuiButton level="secondary">Sign up</LuiButton>
+            <LuiButton level="secondary">Register</LuiButton>
             <LuiButton level="primary">Login</LuiButton>
           </LuiFormikForm>
         </div>
