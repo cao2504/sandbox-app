@@ -48,18 +48,21 @@ jobs:
 #          tag_with_ref: true
 
       # Setup gcloud CLI
-      - uses: google-github-actions/setup-gcloud@master
+      - name: Set up gcloud CLI
+        uses: google-github-actions/setup-gcloud@master
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
 
       # Configure Docker to use the gcloud command-line tool as a credential
       # helper for authentication
-      - run: |-
+      - name: Configure Docker to use gcloud auth
+        run: |-
           gcloud --quiet auth configure-docker
 
       # Get the GKE credentials so we can deploy to the cluster
-      - run: |-
+      - name: Get GKE credentials
+        run: |-
           gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
 
       # Build the Docker image
