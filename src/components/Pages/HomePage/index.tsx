@@ -22,7 +22,7 @@ const Index = () => {
   return (
     <div>
       <div className={styles.Header}>
-        <AppBar position="static">
+        <AppBar>
           <Toolbar>
             {/*<IconButton edge="start" className={styles.menuButton} color="inherit" aria-label="menu">*/}
             {/*  <MenuIcon />*/}
