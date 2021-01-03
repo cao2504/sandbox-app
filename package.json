@@ -13,11 +13,15 @@
     "@types/node": "^12.19.9",
     "@types/react": "^16.14.2",
     "@types/react-dom": "^16.9.10",
+    "@typescript-eslint/eslint-plugin": "^4.11.1",
+    "@typescript-eslint/parser": "^4.11.1",
+    "@typescript-eslint/typescript-estree": "^4.11.1",
     "eslint": "^7.16.0",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-prettier": "^3.3.0",
     "eslint-plugin-react": "^7.21.5",
     "fontsource-roboto": "^4.0.0",
+    "husky": "^4.3.6",
     "node-sass": "^4.12.0",
     "prettier": "^2.2.1",
     "react": "^17.0.1",
@@ -32,7 +36,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint \"src/*.{tsx, js, jsx}\"",
+    "pre-commit": "npm run lint",
+    "fix": "npm run lint -- --fix",
+    "dry-run": "npm run lint -- --fix-dry-run"
   },
   "eslintConfig": {
     "extends": [
@@ -58,5 +66,10 @@
     "clsx": "^1.1.1",
     "react-router": "^5.2.0",
     "webpack-cli": "^4.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pre-commit"
+    }
   }
 }
