@@ -1,10 +1,7 @@
 import React from "react"
 import { withRouter } from "react-router"
-import { LuiButton, LuiFormikForm, LuiTextInput } from "@linzjs/lui"
-import clsx from "clsx"
 import styles from "./index.module.scss"
-import { AppBar, Toolbar, IconButton, Typography, Button, createStyles, Theme, makeStyles } from "@material-ui/core"
-import MenuIcon from "@material-ui/icons/Menu"
+import { AppBar, Toolbar, Typography, Button, createStyles, Theme, makeStyles } from "@material-ui/core"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
