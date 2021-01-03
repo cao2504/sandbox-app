@@ -2,7 +2,12 @@ html,
 body {
   margin: 0px;
   height: 100%;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
+
 .Header {
   header {
     background-color: white;
