@@ -1,23 +1,19 @@
 import React from "react"
 import "./App.css"
 import "@linzjs/lui/dist/lui.css"
-import { LuiButton, LuiFormikForm, LuiTextInput } from "@linzjs/lui"
+import { BrowserRouter as Router, Route } from "react-router-dom"
+import HomePage from "./components/Pages/HomePage"
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="lui-text-content-area">
-          <LuiFormikForm initialValues={{ username: "" }} onSubmit={() => {}}>
-            <LuiTextInput name={"username"} label="Username" />
-            <LuiTextInput name={"password"} label="Password" />
-            <LuiButton level="secondary">Register</LuiButton>
-            <LuiButton level="primary">Login</LuiButton>
-          </LuiFormikForm>
-        </div>
-      </header>
-    </div>
+    <Router>
+      <AllPages />
+    </Router>
   )
+}
+
+const AllPages: React.FC = () => {
+  return <Route exact path="/" component={HomePage} />
 }
 
 export default App
