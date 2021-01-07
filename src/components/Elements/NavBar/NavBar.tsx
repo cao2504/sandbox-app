@@ -24,7 +24,7 @@ const homePage = () => () => {
   location.assign(`/`)
 }
 
-const NavBar = () => {
+const NavBar: React.FC = () => {
   const classes = useStyles()
   return (
     <div className={styles.Header}>

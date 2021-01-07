@@ -42,12 +42,6 @@
     "fix": "npm run lint -- --fix",
     "dry-run": "npm run lint -- --fix-dry-run"
   },
-  "eslintConfig": {
-    "node": true,
-    "browser": true,
-    "commonjs": true,
-    "amd": true
-  },
   "browserslist": {
     "production": [
       ">0.2%",
