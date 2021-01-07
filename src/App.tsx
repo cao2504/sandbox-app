@@ -3,6 +3,8 @@ import "./App.css"
 import "@linzjs/lui/dist/lui.css"
 import { BrowserRouter as Router, Route } from "react-router-dom"
 import HomePage from "./components/Pages/HomePage"
+import { NavBar } from "./components/NavBar/NavBar"
+import Playground from "./components/Pages/Playground/Playground"
 
 const App: React.FC = () => {
   return (
@@ -13,7 +15,13 @@ const App: React.FC = () => {
 }
 
 const AllPages: React.FC = () => {
-  return <Route exact path="/" component={HomePage} />
+  return (
+    <>
+      <NavBar />
+      <Route exact path="/" component={HomePage} />
+      <Route exact path="/playground" component={Playground} />
+    </>
+  )
 }
 
 export default App
