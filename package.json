@@ -43,10 +43,10 @@
     "dry-run": "npm run lint -- --fix-dry-run"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "node": true,
+    "browser": true,
+    "commonjs": true,
+    "amd": true
   },
   "browserslist": {
     "production": [

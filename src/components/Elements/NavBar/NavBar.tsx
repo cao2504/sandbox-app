@@ -20,16 +20,22 @@ const playgroundPage = () => () => {
   location.assign(`/playground`)
 }
 
+const homePage = () => () => {
+  location.assign(`/`)
+}
+
 const NavBar = () => {
   const classes = useStyles()
   return (
     <div className={styles.Header}>
-      <AppBar>
+      <AppBar position="fixed">
         <Toolbar>
           <Typography variant="h5" className={classes.title}>
             Cee
           </Typography>
-          <Button color="inherit">Home</Button>
+          <Button color="inherit" onClick={homePage()}>
+            Home
+          </Button>
           <Button color="inherit">Portfolio</Button>
           <Button color="inherit" onClick={playgroundPage()}>
             Playground

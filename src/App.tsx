@@ -1,9 +1,9 @@
 import React from "react"
-import "./App.css"
+import "./App.module.scss"
 import "@linzjs/lui/dist/lui.css"
 import { BrowserRouter as Router, Route } from "react-router-dom"
 import HomePage from "./components/Pages/HomePage"
-import { NavBar } from "./components/NavBar/NavBar"
+import { NavBar } from "./components/Elements/NavBar/NavBar"
 import Playground from "./components/Pages/Playground/Playground"
 
 const App: React.FC = () => {
