@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: sandbox-ingress
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: sandbox-app-ip
+    networking.gke.io/managed-certificates: sandbox-cert
+    kubernetes.io/ingress.allow-http: "false"
+spec:
+  backend:
+    serviceName: nginx-1-n7g26
+    servicePort: 80
